@@ -16,15 +16,17 @@
     "@types/react": "latest",
     "@types/react-dom": "18.2.7",
     "@vercel/analytics": "^1.0.2",
-    "@vercel/blob": "^0.12.4",
+    "@vercel/blob": "^0.23.3",
     "@vercel/kv": "^0.2.3",
     "autoprefixer": "10.4.15",
+    "axios": "^1.7.2",
     "clsx": "^2.0.0",
+    "dotenv": "^16.4.5",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
     "lucide-react": "^0.279.0",
     "next": "canary",
-    "postcss": "8.4.30",
+    "postcss": "^8.4.38",
     "promptmaker": "^1.1.0",
     "react": "latest",
     "react-dom": "18.2.0",
@@ -32,11 +34,12 @@
     "sonner": "^1.0.3",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "3.3.3",
-    "typescript": "5.2.2",
     "vaul": "^0.6.5"
   },
   "devDependencies": {
     "prettier": "^3.0.3",
-    "prettier-plugin-tailwindcss": "^0.5.4"
+    "prettier-plugin-tailwindcss": "^0.5.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.2"
   }
 }

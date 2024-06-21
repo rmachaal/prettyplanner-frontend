@@ -4,7 +4,7 @@ import { generate } from "@/lib/actions";
 import useEnterSubmit from "@/lib/hooks/use-enter-submit";
 import { SendHorizonal } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { experimental_useFormStatus as useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
 import { LoadingCircle } from "./icons";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";

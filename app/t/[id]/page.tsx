@@ -15,7 +15,7 @@ export async function generateMetadata({
     return;
   }
 
-  const title = `Spirals: ${data.prompt}`;
+  const title = `PrettyPlanner: ${data.prompt}`;
   const description = `A spiral generated from the prompt: ${data.prompt}`;
 
   return {
