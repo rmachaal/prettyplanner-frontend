@@ -1,14 +1,20 @@
 import { createTodoList } from "@/app/api/plannerApi";
 import React, { useState } from "react";
 
-const CreateTodoListModal = ({ onClose }) => {
+interface CreateTodoListModalProps {
+  onClose: () => void; // onClose prop should be a function that takes no parameters and returns void
+}
+
+const CreateTodoListModal: React.FC<CreateTodoListModalProps> = ({
+  onClose,
+}) => {
   const [title, setTitle] = useState("");
 
   const handleCreateList = async () => {
     try {
       await createTodoList(title);
       console.log("Successfully created todo list");
-      onClose();
+      onClose(); // Call onClose function provided by parent component
     } catch (error) {
       console.error("Error creating todo list:", error);
     }

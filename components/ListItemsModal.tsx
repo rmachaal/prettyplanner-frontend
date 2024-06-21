@@ -1,6 +1,18 @@
 import React from "react";
 
-const ListItemsModal = ({ isOpen, onClose, listTitle, listItems }) => {
+interface ListItemsModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  listTitle: string;
+  listItems: { id: number; content: string }[]; 
+}
+
+const ListItemsModal = ({
+  isOpen,
+  onClose,
+  listTitle,
+  listItems,
+}: ListItemsModalProps) => {
   return (
     <div
       className={`fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 ${

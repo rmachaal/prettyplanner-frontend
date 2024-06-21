@@ -2,7 +2,7 @@ import Form from "@/components/form";
 import { Suspense } from "react";
 import Planner from "./planner";
 import PhotoBooth from "@/components/photo-booth";
-import { CountDisplay, GeneratedCount } from "./generated-count";
+import CountDisplay, { GeneratedCount } from "./generated-count";
 
 export default function FormRSC({
   prompt,

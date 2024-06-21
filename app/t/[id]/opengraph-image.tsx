@@ -1,4 +1,4 @@
-import { ImageResponse } from "next/server";
+import { ImageResponse } from "next/og";
 import { notFound } from "next/navigation";
 import { kv } from "@vercel/kv";
 

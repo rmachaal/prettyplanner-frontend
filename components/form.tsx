@@ -4,10 +4,6 @@ import { generate } from "@/lib/actions";
 import useEnterSubmit from "@/lib/hooks/use-enter-submit";
 import { SendHorizonal } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { useFormStatus } from "react-dom";
-import { LoadingCircle } from "./icons";
-import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
 import va from "@vercel/analytics";
 // @ts-ignore
 import promptmaker from "promptmaker";
@@ -16,6 +12,9 @@ import Popover from "./popover";
 import { DEFAULT_PATTERN } from "@/lib/constants";
 import PatternPicker from "./pattern-picker";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { LoadingCircle } from "./icons";
 
 export default function Form({
   promptValue,
@@ -27,6 +26,7 @@ export default function Form({
   const router = useRouter();
   const [prompt, setPrompt] = useState(promptValue || "");
   const [placeholderPrompt, setPlaceholderPrompt] = useState("");
+
   useEffect(() => {
     if (promptValue) {
       setPlaceholderPrompt("");
@@ -38,6 +38,7 @@ export default function Form({
   const { formRef, onKeyDown } = useEnterSubmit();
 
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
   useEffect(() => {
     if (promptValue && textareaRef.current) {
       textareaRef.current.select();
@@ -65,19 +66,26 @@ export default function Form({
     }
   };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    va.track("generate prompt", {
+      prompt: prompt,
+    });
+    try {
+      const id = await generate({ patternUrl: pattern } as any);
+      router.push(`/t/${id}`);
+    } catch (error) {
+      console.error("Error generating prompt:", error);
+      toast.error("Failed to generate prompt. Please try again later.");
+    }
+  };
+
   return (
     <form
       ref={formRef}
       className="mx-auto mt-6 flex w-full max-w-xl animate-fade-up items-center space-x-2 rounded-lg border border-gray-200 bg-white px-1 py-2 opacity-0 shadow-md sm:px-2 sm:py-4"
       style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
-      action={(data) => {
-        va.track("generate prompt", {
-          prompt: prompt,
-        });
-        generate(data).then((id) => {
-          router.push(`/t/${id}`);
-        });
-      }}
+      onSubmit={handleSubmit}
     >
       <input className="hidden" name="patternUrl" value={pattern} readOnly />
       <Popover
@@ -137,10 +145,23 @@ export default function Form({
 }
 
 const SubmitButton = () => {
-  const { pending } = useFormStatus();
+  const [pending, setPending] = useState(false);
+
+  const handleSubmit = async () => {
+    try {
+      setPending(true);
+      // Perform form submission logic
+      // Example: await axios.post('/submit-form', formData);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      setPending(false);
+    }
+  };
 
   return (
     <button
+      type="submit"
       className={cn(
         "group rounded-lg p-2.5",
         pending

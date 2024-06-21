@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
 // Import necessary libraries and utilities
 import { nFormatter } from "@/lib/utils";
-import { kv } from "@vercel/kv";
 import dotenv from "dotenv";
 import { useEffect, useState } from "react";
 
@@ -70,4 +69,4 @@ const CountDisplay = ({ count }: { count?: number }) => {
   );
 };
 
-export default GeneratedCount;
+export default CountDisplay;

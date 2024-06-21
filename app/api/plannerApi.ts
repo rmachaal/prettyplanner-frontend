@@ -11,7 +11,7 @@ export const getTodoLists = async () => {
   }
 };
 
-export const getTodoListById = async (id) => {
+export const getTodoListById = async (id: number) => {
   try {
     const response = await axios.get(
       `https://prettyplanner-api.onrender.com/todolists/${id}`,
@@ -24,7 +24,7 @@ export const getTodoListById = async (id) => {
   }
 };
 
-export const createTodoList = async (title) => {
+export const createTodoList = async (title: string) => {
   try {
     const response = await axios.post(
       "https://prettyplanner-api.onrender.com/todolists",
