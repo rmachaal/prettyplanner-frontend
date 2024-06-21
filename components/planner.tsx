@@ -11,17 +11,17 @@ export default function Planner() {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 font-sans text-primary">
-      <div className="max-w-5xl w-full mb-8">
-        <h1 className="text-xl font-semibold mb-4 text-primary">
+    <main className="text-primary flex min-h-screen flex-col items-center justify-between p-24 font-sans">
+      <div className="mb-8 w-full max-w-5xl">
+        <h1 className="text-s text-primary mb-4 font-semibold">
           My To-Do Lists
         </h1>
         <TodoList />
         <button
           onClick={openModal}
-          className="mt-6 text-white px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 hover:from-purple-600 hover:via-pink-600 hover:to-red-600 transition-all duration-300"
+          className="mt-6 rounded-md bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 px-4 py-2 text-white transition-all duration-300 hover:from-purple-600 hover:via-pink-600 hover:to-red-600"
         >
-          Create New List
+          <p className="text-xs">Create New List</p>
         </button>
         {isModalOpen && <CreateTodoListModal onClose={closeModal} />}
       </div>

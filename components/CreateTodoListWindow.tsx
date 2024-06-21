@@ -1,13 +1,17 @@
+import { createTodoList } from "@/app/api/plannerApi";
 import React, { useState } from "react";
 
 const CreateTodoListModal = ({ onClose }) => {
   const [title, setTitle] = useState("");
 
-  const handleCreateList = () => {
-    // Implement logic to create new to-do list
-    console.log("Creating list with title:", title);
-    // Close modal after creating list
-    onClose();
+  const handleCreateList = async () => {
+    try {
+      await createTodoList(title);
+      console.log("Successfully created todo list");
+      onClose();
+    } catch (error) {
+      console.error("Error creating todo list:", error);
+    }
   };
 
   return (
