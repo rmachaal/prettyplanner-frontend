@@ -8,7 +8,7 @@ import {
 import { LoadingCircle } from "./icons";
 
 const TodoList = () => {
-  const [todoLists, setTodoLists] = useState([]);
+const [todoLists, setTodoLists] = useState<TodoList[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [selectedListItems, setSelectedListItems] = useState<any[]>([]);
