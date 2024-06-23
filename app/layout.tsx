@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Github, BuyMeACoffee } from "@/components/icons";
+import { Github } from "@/components/icons";
 import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "sonner";
 
