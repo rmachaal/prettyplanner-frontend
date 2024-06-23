@@ -2,7 +2,7 @@ import { createTodoList } from "@/app/api/plannerApi";
 import React, { useState } from "react";
 
 interface CreateTodoListModalProps {
-  onClose: () => void; // onClose prop should be a function that takes no parameters and returns void
+  onClose: () => void;
 }
 
 const CreateTodoListModal: React.FC<CreateTodoListModalProps> = ({
@@ -14,7 +14,7 @@ const CreateTodoListModal: React.FC<CreateTodoListModalProps> = ({
     try {
       await createTodoList(title);
       console.log("Successfully created todo list");
-      onClose(); // Call onClose function provided by parent component
+      onClose();
     } catch (error) {
       console.error("Error creating todo list:", error);
     }
@@ -22,7 +22,7 @@ const CreateTodoListModal: React.FC<CreateTodoListModalProps> = ({
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-      <div className="rounded-lg bg-white p-8 shadow-md">
+      <div className="w-96 rounded-lg bg-white p-8 shadow-md">
         <h2 className="mb-4 text-xl font-semibold">Create New To-Do List</h2>
         <input
           type="text"
@@ -34,13 +34,13 @@ const CreateTodoListModal: React.FC<CreateTodoListModalProps> = ({
         <div className="flex justify-end">
           <button
             onClick={handleCreateList}
-            className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+            className="mr-4 rounded-md bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 px-4 py-2 text-white transition-all duration-300 hover:from-purple-600 hover:via-pink-600 hover:to-red-600"
           >
             Create
           </button>
           <button
             onClick={onClose}
-            className="ml-2 rounded-md bg-gray-300 px-4 py-2 text-gray-700 hover:bg-gray-400"
+            className="rounded-md bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 px-4 py-2 text-white transition-all duration-300 hover:from-purple-600 hover:via-pink-600 hover:to-red-600"
           >
             Cancel
           </button>
