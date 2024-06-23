@@ -74,14 +74,18 @@ const TodoList = () => {
 
     setNewItemContent("");
 
-    try {
-      await addItemToList(selectedListId, newItem);
-      console.log(`Added item with content: ${newItem.content}`);
-    } catch (error) {
-      console.error("Error deleting item:", error);
-      setSelectedListItems(originalItems);
-      alert("Failed to add the item. Please try again.");
-    }
+      try {
+        if (selectedListId !== null) {
+          await addItemToList(selectedListId, newItem);
+          console.log(`Added item with content: ${newItem.content}`);
+        } else {
+          console.error("Error: selectedListId is null");
+        }
+      } catch (error) {
+        console.error("Error adding item:", error);
+        setSelectedListItems(originalItems);
+        alert("Failed to add the item. Please try again.");
+      }
   };
 
   if (loading) {
