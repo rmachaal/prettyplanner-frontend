@@ -64,5 +64,3 @@ export const addItemToList = async (id: number, item: object) => {
     throw error;
   }
 };
-
-// getTodoLists();
