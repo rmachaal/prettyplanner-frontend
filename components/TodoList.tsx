@@ -7,8 +7,13 @@ import {
 } from "../app/api/plannerApi";
 import { LoadingCircle } from "./icons";
 
+interface ITodoList {
+  id: number;
+  title: string;
+}
+
 const TodoList = () => {
-const [todoLists, setTodoLists] = useState<TodoList[]>([]);
+  const [todoLists, setTodoLists] = useState<ITodoList[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [selectedListItems, setSelectedListItems] = useState<any[]>([]);
