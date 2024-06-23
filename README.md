@@ -1,56 +1,79 @@
-<a href="https://spirals.vercel.app">
-  <img alt="Spirals – Generate beautiful AI spiral art with one click." src="/app/opengraph-image.png">
-  <h1 align="center">Spirals</h1>
-</a>
+# PrettyPlanner (frontend)
 
-<p align="center">
-  Generate beautiful AI spiral art with one click. Powered by Vercel and Replicate.
-</p>
+This repository contains the frontend for a To-Do List application, built with Next.js and deployed on Vercel. This project is currently a work in progress.
 
-<p align="center">
-  <a href="https://twitter.com/steventey">
-    <img src="https://img.shields.io/twitter/follow/steventey?style=flat&label=steventey&logo=twitter&color=0bf&logoColor=fff" alt="Steven Tey Twitter follower count" />
-  </a>
-  <a href="https://github.com/steven-tey/spirals">
-    <img src="https://img.shields.io/github/stars/steven-tey/spirals?label=steven-tey%2Fspirals" alt="Spirals repo star count" />
-  </a>
-</p>
+## Live Demo
 
-<p align="center">
-  <a href="#introduction"><strong>Introduction</strong></a> ·
-  <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
-  <a href="#deploy-your-own"><strong>Deploy Your Own</strong></a> ·
-  <a href="#author"><strong>Author</strong></a>
-</p>
-<br/>
+You can view the current version of the application [here](https://prettyplanner.vercel.app/).
 
-## Introduction
+## Features (Work in Progress)
 
-Spirals is an AI app for you to generate beautiful spiral art with one click. Powered by Vercel and Replicate.
-
-https://github.com/steven-tey/spirals/assets/28986134/9f0202d4-2a31-47a0-b43f-bdcd189743ef
+- View to-do lists
+- Create new to-do lists
+- Delete to-do lists
+- Add items to a to-do list
+- Remove items from a to-do list
+- Mark items as complete or incomplete
 
 ## Tech Stack
 
-- Next.js [App Router](https://nextjs.org/docs/app)
-- Next.js [Server Actions](https://nextjs.org/docs/app/api-reference/functions/server-actions)
-- [Bun](https://bun.sh/) for compilation
-- [Vercel Blob](https://vercel.com/storage/blob) for image storage
-- [Vercel KV](https://vercel.com/storage/kv) for redis
-- [`promptmaker`](https://github.com/zeke/promptmaker) lib by @zeke for generating random prompts
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Vercel (for deployment)
 
-## Deploy Your Own
+## Prerequisites
 
-You can deploy this template to Vercel with the button below:
+- Node.js (v14 or later)
+- npm or yarn
 
-[![Deploy with Vercel](https://vercel.com/button)](https://stey.me/spirals-deploy)
+## Setup Instructions
 
-Note that you'll need to:
+1. Clone the repository:
 
-- Set up a [Replicate](https://replicate.com) account to get the `REPLICATE_API_TOKEN` env var.
-- Set up [Vercel KV](https://vercel.com/docs/storage/vercel-kv/quickstart) to get the
-- Set up [Vercel Blob](https://vercel.com/docs/storage/vercel-blob/quickstart)
+`git clone https://github.com/rmachaal/prettyplanner-frontend.git`
 
-## Author
+2. Install dependencies:
 
-- Steven Tey ([@steventey](https://twitter.com/steventey))
+`npm install --legacy-peer-deps && npm install react@latest react-dom@latest`
+
+Note: `npm install` may not work due to peer dependency issues. If you encounter problems, use the command above.
+
+3. Set up environment variables:
+
+   - Create a `.env.local` file in the root directory
+   - Add the following variables:
+     
+     KV_URL=your_kv_url_here
+     KV_REST_API_URL=your_kv_rest_api_url_here
+     KV_REST_API_TOKEN=your_kv_rest_api_token_here
+     KV_REST_API_READ_ONLY_TOKEN=your_kv_rest_api_read_only_token_here
+     
+   The `KV_` variables are for Vercel KV, a serverless Redis database. You'll need to set up a Vercel KV instance and obtain these values from your Vercel dashboard.
+
+4. Run the development server:
+
+`npm run dev`
+
+Open http://localhost:3000 with your browser to see the result.
+
+## Deployment
+
+This project is set up for deployment on Vercel. Any push to the main branch will trigger a new deployment. To deploy your own version:
+
+1. Fork this repository
+2. Sign up for a Vercel account if you haven't already
+3. Connect your GitHub account to Vercel
+4. Create a new project in Vercel and select this repository
+5. Configure your environment variables in the Vercel dashboard
+6. In the Build & Development Settings of your Vercel project, set the Build Command to:
+
+`npm run build`
+
+and set the Install Command as required above. 
+
+## Next Steps
+
+- Implement key features
+- Improve UI/UX design 
+- Implement user authentication
