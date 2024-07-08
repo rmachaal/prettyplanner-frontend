@@ -1,4 +1,4 @@
-import Planner from "@/components/Planner";
+import Planner from "../components/Planner";
 
 export default function Home() {
   return (
@@ -15,11 +15,9 @@ export default function Home() {
       >
         Let's make planning your day beautiful.
       </h2>
-      {/* <div className="grid grid-cols-1 gap-6 md:grid-cols-[1fr,2fr] md:gap-1"> */}
       <div>
         <Planner />
       </div>
-      {/* </div> */}
     </div>
   );
 }
