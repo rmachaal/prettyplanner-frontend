@@ -1,30 +1,7 @@
 import "@/styles/globals.css";
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { Github } from "@/components/icons";
-import { Analytics } from "@vercel/analytics/react";
-import { Toaster } from "sonner";
-
-const clash = localFont({
-  src: "../styles/ClashDisplay-Semibold.otf",
-  variable: "--font-clash",
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "PrettyPlanner",
-  description:
-    "Let's make planning your day beautiful.",
-  metadataBase: new URL("https://spirals.vercel.app"),
-};
 
 export default function RootLayout({
   children,
@@ -34,8 +11,7 @@ export default function RootLayout({
   const scrolled = false;
   return (
     <html lang="en">
-      <body className={cn(clash.variable, inter.variable)}>
-        <Toaster />
+      <body>
         <div className="fixed h-screen w-full bg-gradient-to-br from-violet-100 via-teal-50 to-amber-100" />
         <div
           className={`fixed top-0 w-full ${
@@ -48,7 +24,7 @@ export default function RootLayout({
             <Link href="/" className="flex items-center font-display text-2xl">
               <Image
                 src="/logo.png"
-                alt="Logo image of a chat bubble"
+                alt="Logo image"
                 width="30"
                 height="30"
                 className="mr-2 rounded-sm"
@@ -100,7 +76,6 @@ export default function RootLayout({
             </a>
           </p>
         </div>
-        <Analytics />
       </body>
     </html>
   );
