@@ -95,11 +95,17 @@ const TodoList = () => {
   const handleMarkCompleted = async (id: number) => {
     setCompleted(true);
 
-    try {
-      await markItemAsCompleted(selectedListId, id);
-      console.log(`Marked item with id ${id} as completed.`);
-    } catch (error) {
-      console.error("Error marking item as completed:", error);
+    if (selectedListId !== null) {
+      try {
+        await markItemAsCompleted(selectedListId, id);
+        console.log(`Marked item with id ${id} as completed.`);
+      } catch (error) {
+        console.error("Error marking item as completed:", error);
+      } finally {
+        setCompleted(false);
+      }
+    } else {
+      console.error("Error: selectedListId is null");
       setCompleted(false);
     }
   };
