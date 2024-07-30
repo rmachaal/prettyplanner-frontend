@@ -4,6 +4,7 @@ import {
   getTodoListById,
   deleteTodoList,
   addItemToList,
+  deleteToDoListItem,
 } from "../app/api/plannerApi";
 import { LoadingCircle } from "./icons";
 
@@ -74,18 +75,38 @@ const TodoList = () => {
 
     setNewItemContent("");
 
-      try {
-        if (selectedListId !== null) {
-          await addItemToList(selectedListId, newItem);
-          console.log(`Added item with content: ${newItem.content}`);
-        } else {
-          console.error("Error: selectedListId is null");
-        }
-      } catch (error) {
-        console.error("Error adding item:", error);
-        setSelectedListItems(originalItems);
-        alert("Failed to add the item. Please try again.");
+    try {
+      if (selectedListId !== null) {
+        await addItemToList(selectedListId, newItem);
+        console.log(`Added item with content: ${newItem.content}`);
+      } else {
+        console.error("Error: selectedListId is null");
       }
+    } catch (error) {
+      console.error("Error adding item:", error);
+      setSelectedListItems(originalItems);
+      alert("Failed to add the item. Please try again.");
+    }
+  };
+
+  const handleDeleteItem = async (id: number) => {
+    const originalItems = [...selectedListItems];
+
+    const updatedItems = originalItems.filter((item) => item.id !== id);
+    setSelectedListItems(updatedItems);
+
+    try {
+      if (selectedListId !== null) {
+        await deleteToDoListItem(selectedListId, id);
+        console.log(`Deleted item with id: ${id}`);
+      } else {
+        console.error("Error: selectedListId is null");
+      }
+    } catch (error) {
+      console.error("Error deleting item:", error);
+      setSelectedListItems(originalItems);
+      alert("Failed to delete the item. Please try again.");
+    }
   };
 
   if (loading) {
@@ -124,12 +145,23 @@ const TodoList = () => {
         </div>
       ))}
       {modalOpen && selectedListItems && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
           <div className="w-96 rounded-lg bg-white p-8 shadow-md">
             <h2 className="mb-4 text-xl font-semibold">List Items</h2>
-            <ul>
+            <ul className="list-disc">
               {selectedListItems.map((item: any) => (
-                <li key={item.id}>{item.content}</li>
+                <li
+                  key={item.id}
+                  className="mb-2 flex items-center text-gray-700"
+                >
+                  {item.content}
+                  <button
+                    onClick={() => handleDeleteItem(item.id)}
+                    className="ml-auto rounded-md bg-clip-text px-2 py-1 font-semibold text-transparent hover:bg-red-600"
+                  >
+                    x
+                  </button>
+                </li>
               ))}
             </ul>
             <div className="mt-4">

@@ -64,3 +64,15 @@ export const addItemToList = async (id: number, item: object) => {
     throw error;
   }
 };
+
+export const deleteToDoListItem = async (selectedListId: number, id: number) => {
+  try {
+    await axios.delete(
+      `https://prettyplanner-api.onrender.com/todolists/${selectedListId}/items/${id}`,
+    );
+    console.log(`Item with id ${id} has been deleted successfully.`);
+  } catch (error) {
+    console.error("Error deleting item:", error);
+    throw error;
+  }
+}
