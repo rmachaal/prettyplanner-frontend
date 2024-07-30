@@ -5,8 +5,10 @@ import {
   deleteTodoList,
   addItemToList,
   deleteToDoListItem,
+  markItemAsCompleted,
 } from "../app/api/plannerApi";
 import { LoadingCircle } from "./icons";
+import { log } from "console";
 
 interface ITodoList {
   id: number;
@@ -21,6 +23,7 @@ const TodoList = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [newItemContent, setNewItemContent] = useState("");
   const [selectedListId, setSelectedListId] = useState<number | null>(null);
+  const [completed, setCompleted] = useState(false);
 
   useEffect(() => {
     fetchTodoLists();
@@ -89,6 +92,18 @@ const TodoList = () => {
     }
   };
 
+  const handleMarkCompleted = async (id: number) => {
+    setCompleted(true);
+
+    try {
+      await markItemAsCompleted(selectedListId, id);
+      console.log(`Marked item with id ${id} as completed.`);
+    } catch (error) {
+      console.error("Error marking item as completed:", error);
+      setCompleted(false);
+    }
+  };
+
   const handleDeleteItem = async (id: number) => {
     const originalItems = [...selectedListItems];
 
@@ -154,7 +169,14 @@ const TodoList = () => {
                   key={item.id}
                   className="mb-2 flex items-center text-gray-700"
                 >
-                  {item.content}
+                  <button
+                    onClick={() => handleMarkCompleted(item.id)}
+                    disabled={item.completed}
+                    className={`${item.completed ? "text-gray-800" : "text-transparent"} bg-clip-text px-2 font-semibold hover:bg-green-600`}
+                  >
+                    ✔️
+                  </button>
+                  <p>{item.content}</p>
                   <button
                     onClick={() => handleDeleteItem(item.id)}
                     className="ml-auto rounded-md bg-clip-text px-2 py-1 font-semibold text-transparent hover:bg-red-600"

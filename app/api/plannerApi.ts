@@ -5,7 +5,7 @@ export const getTodoLists = async () => {
     const response = await axios.get(
       "https://prettyplanner-api.onrender.com/todolists",
     );
-    console.log("Fetched Todo Lists", response.data);
+    console.log("Fetched Todo Lists");
     return response.data;
   } catch (error) {
     console.error("Error fetching to-do lists:", error);
@@ -76,3 +76,17 @@ export const deleteToDoListItem = async (selectedListId: number, id: number) => 
     throw error;
   }
 }
+
+export const markItemAsCompleted = async (selectedListId: number, id: number) => {
+
+  try {
+    await axios.patch(
+      `https://prettyplanner-api.onrender.com/todolists/${selectedListId}/items/${id}`,
+      { completed: true }
+    );
+    console.log(`Item with id ${id} has been marked as completed.`);
+  } catch (error) {
+    console.error("Error marking item as completed:", error);
+    throw error;
+  }
+};
